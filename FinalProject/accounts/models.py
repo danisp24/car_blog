@@ -27,7 +27,7 @@ class AppUser(AbstractUser):
         blank=True,
         validators=[
             MinLengthValidator(MIN_NAME_LENGTH),
-            OnlyLettersValidator,
+            OnlyLettersValidator(),
         ],
     )
 
@@ -37,7 +37,7 @@ class AppUser(AbstractUser):
         blank=True,
         validators=[
             MinLengthValidator(MIN_NAME_LENGTH),
-            OnlyLettersValidator,
+            OnlyLettersValidator(),
         ],
     )
 
