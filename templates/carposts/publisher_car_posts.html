@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <h1>Welcome, Publisher!</h1>
+    <h2>Manage Car Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p><strong>Published:</strong> {{ post.created_at }}</p>
+                <form method="post" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <button type="submit">
+                        {% if post.is_published %}
+                            Unpublish
+                        {% else %}
+                            Publish
+                        {% endif %}
+                    </button>
+                </form>
+            </li>
+        {% empty %}
+            <p>No posts available.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

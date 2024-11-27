@@ -1,0 +1,18 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <h1>Welcome, {{ user.username }}!</h1>
+    <h2>Car Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p><strong>Published:</strong> {{ post.created_at }}</p>
+            </li>
+        {% empty %}
+            <p>No posts available.</p>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
