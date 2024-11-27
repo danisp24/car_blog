@@ -1,10 +1,13 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 from FinalProject.posts.models import CarPost
 
 
-class HomeView(TemplateView):
+class HomeView(ListView):
+    model = CarPost
     template_name = 'common/home.html'
+    context_object_name = 'posts'
+    paginate_by = 1  # Number of posts per page
 
     def get_template_names(self):
         if self.request.user.has_perm('posts.can_publish'):
@@ -13,17 +16,13 @@ class HomeView(TemplateView):
             self.template_name = 'carposts/authenticated_car_posts.html'
         return [self.template_name]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
+    def get_queryset(self):
         if self.request.user.has_perm('posts.can_publish'):
-            context['posts'] = CarPost.objects.all()
+            return CarPost.objects.all()  # Show all posts for the publisher
         elif self.request.user.is_authenticated:
-            context['posts'] = CarPost.objects.filter(is_published=True)
+            return CarPost.objects.filter(is_published=True)  # Show only published posts for authenticated users
         else:
-            context['posts'] = []
-
-        return context
+            return CarPost.objects.none()
 
     def post(self, request, *args, **kwargs):
         post_id = request.POST.get('post_id')
