@@ -1,5 +1,9 @@
-from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.db.models import Case, Value, When, BooleanField
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView
+
+from FinalProject.common.forms import CommentForm
 from FinalProject.posts.models import CarPost
 
 
@@ -7,7 +11,7 @@ class HomeView(ListView):
     model = CarPost
     template_name = 'common/home.html'
     context_object_name = 'posts'
-    paginate_by = 1  # Number of posts per page
+    paginate_by = 3  # Number of posts per page
 
     def get_template_names(self):
         if self.request.user.has_perm('posts.can_publish'):
@@ -18,9 +22,16 @@ class HomeView(ListView):
 
     def get_queryset(self):
         if self.request.user.has_perm('posts.can_publish'):
-            return CarPost.objects.all()  # Show all posts for the publisher
+            return (
+                CarPost.objects.all(
+                )
+                .order_by('is_published', '-created_at')
+            )
         elif self.request.user.is_authenticated:
-            return CarPost.objects.filter(is_published=True)  # Show only published posts for authenticated users
+            return (
+                CarPost.objects.filter(is_published=True)
+                .order_by('-created_at')
+            )
         else:
             return CarPost.objects.none()
 

@@ -1,0 +1,27 @@
+{% extends 'common/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{{ post.title }}</h1>
+    
+    <div class="card shadow-lg mb-5">
+        <div class="card-body">
+            <h3 class="card-title">{{ post.title }}</h3>
+            <p class="card-text">{{ post.content }}</p>
+            <p class="text-muted">
+                <strong>Published:</strong> {{ post.created_at|date:"M d, Y" }}
+            </p>
+
+            <div class="d-flex justify-content-between align-items-center">
+                {% if post.is_published %}
+                    <span class="badge bg-success">Published</span>
+                {% else %}
+                    <span class="badge bg-warning text-dark">Unpublished</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to the list of posts -->
+    <a href="{% url 'home' %}" class="btn btn-outline-primary">Back to Posts</a>
+</div>
+{% endblock %}
