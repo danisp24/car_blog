@@ -1,0 +1,39 @@
+{% extends 'common/base.html' %}
+
+{% block title %}Car Listings{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Car Listings</h1>
+
+        <!-- Check if there are any cars -->
+        {% if cars %}
+            <div class="row">
+                <!-- Loop through the cars -->
+                {% for car in cars %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ car.brand }}</h5>
+                                <p class="card-text">
+                                    <strong>Category:</strong> {{ car.category.name }}<br>
+                                    <strong>Price:</strong> ${{ car.price }}<br>
+                                    <strong>Description:</strong> {{ car.description|truncatewords:15 }}
+                                </p>
+                                {% if car.available_for_test_drive %}
+                                    <span class="badge bg-success">Available for Test Drive</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Not Available for Test Drive</span>
+                                {% endif %}
+                                <a href="{% url 'car_details' car.pk %}" class="btn btn-primary mt-3">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center">No cars available at the moment. Please check back later.</p>
+        {% endif %}
+        {% include 'common/pagination.html' %}
+    </div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -39,5 +40,5 @@ class UserRegisterView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('home')
+            return HttpResponseForbidden(render(request, '403.html'))
         return super().dispatch(request, *args, **kwargs)

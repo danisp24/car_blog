@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'FinalProject.accounts',
     'FinalProject.common',
-    'FinalProject.posts'
+    'FinalProject.posts',
+    "FinalProject.cars.apps.CarsConfig"
 
 ]
 

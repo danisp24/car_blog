@@ -1,0 +1,48 @@
+{% extends 'common/base.html' %}
+
+{% block title %}Manage Bookings{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Manage Test Drive Bookings</h1>
+
+    {% if bookings %}
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Car</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.user.username }}</td>
+                    <td>{{ booking.car.brand }}</td>
+                    <td>{{ booking.date }}</td>
+                    <td>{{ booking.time }}</td>
+                    <td>
+                        {% if booking.status == 'Pending' %}
+                            <span class="badge bg-warning text-dark">{{ booking.status }}</span>
+                        {% elif booking.status == 'Confirmed' %}
+                            <span class="badge bg-success">{{ booking.status }}</span>
+                        {% else %}
+                            <span class="badge bg-danger">{{ booking.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'update_booking_status' booking.id %}" class="btn btn-sm btn-primary">Update Status</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center">No bookings available.</p>
+    {% endif %}
+</div>
+{% endblock %}

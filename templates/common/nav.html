@@ -1,3 +1,4 @@
+{% load has_permission %}
 <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'my_posts' %}">My Blog</a>
@@ -19,10 +20,29 @@
                         <a class="nav-link" href="{% url 'create_car_post' %}">Create post</a>
                     </li>
                 {% endif %}
+                {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-primary text-white px-3" href="{% url 'cars' %}"
+                           id="bookCarDropdown" role="button" aria-expanded="false">
+                            Book a Car
+                        </a>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+                        <ul class="dropdown-menu" aria-labelledby="bookCarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'my_bookings' %}">My Bookings History</a></li>
+                            {% if user|has_permission:'cars.manage_bookings' %}
+                                <li><a class="dropdown-item" href="{% url 'manage_bookings' %}">Manage Bookings</a></li>
+                            {% endif %}
+                            {% if user|has_permission:'cars.add_car' %}
+                                <li><a class="dropdown-item" href="{% url 'add_car' %}">Add cars</a></li>
+                            {% endif %}
+
+                        </ul>
+                    </li>
+                {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}"
