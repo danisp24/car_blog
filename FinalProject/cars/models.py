@@ -45,33 +45,5 @@ class TestDriveBooking(models.Model):
             ('manage_bookings', 'Can manage test drive bookings'),
         ]
 
-    def save(self, *args, **kwargs):
-        if self.status == 'Confirmed':
-
-            existing_confirmed = TestDriveBooking.objects.filter(
-                car=self.car,
-                status='Confirmed'
-            ).exclude(id=self.id)
-
-            if existing_confirmed.exists():
-                raise ValidationError("This car already has a confirmed booking.")
-
-            TestDriveBooking.objects.filter(
-                car=self.car,
-                status='Pending'
-            ).exclude(id=self.id).update(status='Cancelled')
-
-            self.car.available_for_test_drive = False
-            self.car.save()
-
-        elif self.status in ['Cancelled', 'Pending']:
-            confirmed_bookings = TestDriveBooking.objects.filter(
-                car=self.car,
-                status='Confirmed'
-            )
-
-            if not confirmed_bookings.exists():
-                self.car.available_for_test_drive = True
-                self.car.save()
-
-        super().save(*args, **kwargs)
+    def __str__(self):
+        return f"Booking for {self.car.brand} by {self.user.username}"

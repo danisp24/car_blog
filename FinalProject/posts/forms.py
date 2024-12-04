@@ -1,5 +1,6 @@
 from django import forms
 
+from FinalProject.posts.mixins import DisabledFieldsMixin
 from FinalProject.posts.models import CarPost
 
 
@@ -14,7 +15,8 @@ class PostBaseForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Post title'}),
             'content': forms.Textarea(
-                attrs={'class': 'form-control', 'rows': 5, 'placeholder': 'Write the content about this car post here'}),
+                attrs={'class': 'form-control', 'rows': 5,
+                       'placeholder': 'Write the content about this car post here'}),
         }
         error_messages = {
             'title': {
@@ -33,7 +35,6 @@ class PostCreateForm(PostBaseForm):
     pass
 
 
-
 # class PostEditForm(PostBaseForm):
 #     class Meta(PostBaseForm.Meta):
 #         help_texts = {
@@ -41,8 +42,13 @@ class PostCreateForm(PostBaseForm):
 #         }
 
 
-# class PostDeleteForm(ReadOnlyMixin, PostBaseForm):
-#     read_only_fields = ['title', 'content', 'image_url']
-#
-#     class Meta(PostEditForm.Meta):
-#         pass
+class PostDeleteForm(DisabledFieldsMixin, PostBaseForm):
+    disabled_fields = ('__all__',)
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(
+        label='',
+        required=False,
+        max_length=100,
+    )

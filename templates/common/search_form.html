@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Search Posts</h2>
+
+    <form method="GET" action="{% url 'home' %}">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="query" aria-label="Search"
+                           value="{{ request.GET.query }}"/>
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

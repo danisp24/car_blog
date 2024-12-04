@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from .forms import TestDriveBookingForm
 from .models import Car, CarCategory, TestDriveBooking
 
 
@@ -32,5 +34,4 @@ class TestDriveBookingAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'car__brand')
     ordering = ('-created_at',)
     date_hierarchy = 'date'
-    list_editable = ('status',)
     readonly_fields = ('created_at',)

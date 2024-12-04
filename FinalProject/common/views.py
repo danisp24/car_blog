@@ -21,19 +21,24 @@ class HomeView(ListView):
         return [self.template_name]
 
     def get_queryset(self):
+
         if self.request.user.has_perm('posts.can_publish'):
-            return (
-                CarPost.objects.all(
-                )
-                .order_by('is_published', '-created_at')
-            )
+            queryset = CarPost.objects.all()
+
         elif self.request.user.is_authenticated:
-            return (
-                CarPost.objects.filter(is_published=True)
-                .order_by('-created_at')
-            )
+            queryset = CarPost.objects.filter(is_published=True)
+
         else:
-            return CarPost.objects.none()
+            queryset = CarPost.objects.none()
+
+        if 'query' in self.request.GET:
+            query = self.request.GET.get('query')
+            if query:
+                queryset = queryset.filter(title__icontains=query)
+
+        queryset = queryset.order_by('is_published', '-created_at')
+
+        return queryset
 
     def post(self, request, *args, **kwargs):
         post_id = request.POST.get('post_id')

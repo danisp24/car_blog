@@ -1,5 +1,20 @@
 {% extends 'common/base.html' %}
 
+
 {% block content %}
-    Hello Boss
+    <div class="container mt-5">
+        <h2 class="mb-4">Add a New Car</h2>
+
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Please fix the errors below:</strong>
+            </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Car</button>
+        </form>
+    </div>
 {% endblock %}
