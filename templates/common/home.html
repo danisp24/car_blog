@@ -1,13 +1,40 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1> Home Page</h1>
-    <p>If you want to see the posts,
-        please
-        <a href="{% url 'login' %}">sign in</a>
-        or
-        <a href="{% url 'register' %}">register</a>
-        if you do not have an account.
-    </p>
-{% endblock %}
+    <div class="container my-5">
+        <div class="row">
 
+            <div class="col-md-6">
+                <h1>Welcome to Car Blog</h1>
+                <p class="text-muted">Where Passion for Cars Drives Everything</p>
+
+                <div class="my-4">
+                    <p class="lead">At <strong>Car Blog</strong>, we celebrate the artistry, innovation, and excitement of the
+                        automotive
+                        world. Whether you're here to explore the latest trends, dive into fascinating car stories, or
+                        share
+                        your passion for vehicles, you’re in the right place.</p>
+                    <p class="lead">Our community is designed for car lovers of all kinds—from seasoned enthusiasts to curious
+                        newcomers. We
+                        believe every car has a story, and we’re here to help you discover and share yours.</p>
+                </div>
+
+                <div class="my-4">
+                    <p class="lead">Want to see posts and connect with other car enthusiasts?</p>
+                    <p class="lead"><a href="{% url 'login' %}">Sign in</a>
+                        to your
+                        account or <a href="{% url 'register' %}">register</a> to join our growing community.</p>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 text-center">
+                <img src="{% static 'images/depositphotos_31887593-stock-photo-auto-blog.jpg' %}" alt="Auto Blog"
+                     class="img-fluid rounded shadow mb-4" style="max-width: 60%; height: auto;">
+                <img src="{% static 'images/istockphoto-1493574434-612x612.jpg' %}" alt="Car Enthusiasts"
+                     class="img-fluid rounded shadow mb-4" style="max-width: 60%; height: auto;">
+            </div>
+        </div>
+    </div>
+{% endblock %}

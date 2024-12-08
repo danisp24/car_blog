@@ -1,23 +1,25 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
-    <h1>{{ car.brand }}</h1>
-    <p><strong>Category:</strong> {{ car.category.name }}</p>
-    <p><strong>Price:</strong> ${{ car.price }}</p>
-    <p><strong>Description:</strong> {{ car.description }}</p>
-{#    <a href="{% url '' %}">Book for a Test Drive</a>#}
-
-{#    {% if car.available_for_test_drive %}#}
-{#        <h3>Book a Test Drive</h3>#}
-{#        <form method="post">#}
-{#            {% csrf_token %}#}
-{#            <label for="date">Date:</label>#}
-{#            <input type="date" id="date" name="date" required>#}
-{#            <label for="time">Time:</label>#}
-{#            <input type="time" id="time" name="time" required>#}
-{#            <button type="submit" class="btn btn-primary">Book Now</button>#}
-{#        </form>#}
-{#    {% else %}#}
-{#        <p>Test drives are not available for this car at the moment.</p>#}
-{#    {% endif %}#}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ car.brand }}</h1>
+            <p><strong>Category:</strong> {{ car.category.name }}</p>
+            <p><strong>Price:</strong> ${{ car.price }}</p>
+            <p><strong>Description:</strong> {{ car.description }}</p>
+            <p><strong>Available for Test Drive at the moment:</strong>
+                {% if car.available_for_test_drive %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="{{ car.image_url }}" alt="Image of {{ car.brand }}" class="img-fluid shadow-sm rounded">
+        </div>
+    </div>
+</div>
 {% endblock %}
+

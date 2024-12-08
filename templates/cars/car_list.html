@@ -5,11 +5,9 @@
 {% block content %}
     <div class="container mt-4">
         <h1 class="text-center mb-4">Car Listings</h1>
-
-        <!-- Check if there are any cars -->
+    
         {% if cars %}
             <div class="row">
-                <!-- Loop through the cars -->
                 {% for car in cars %}
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">

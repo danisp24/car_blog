@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.core.exceptions import ValidationError
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-from .forms import CarCreateForm, TestDriveBookingForm
+from .forms import CarCreateForm, TestDriveBookingForm, CarCategoryForm
 from .models import Car, CarCategory, TestDriveBooking
 
 
@@ -13,8 +13,8 @@ class CarListView(ListView):
     model = Car
     template_name = 'cars/car_list.html'
     context_object_name = 'cars'
-    paginate_by = 3
-    ordering = ['brand']
+    paginate_by = 5
+    ordering = ['-available_for_test_drive', 'brand']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,6 +50,20 @@ class CarCreateView(PermissionRequiredMixin, CreateView):
 
     def handle_no_permission(self):
         return render(self.request, '403.html', status=403)
+
+
+class CarCategoryCreateView(PermissionRequiredMixin, CreateView):
+    model = CarCategory
+    form_class = CarCategoryForm
+    template_name = 'cars/add_category.html'
+    success_url = reverse_lazy('home')
+    permission_required = 'cars.add_carcategory'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def handle_no_permission(self):
+        raise Http404
 
 
 class MyBookingsView(LoginRequiredMixin, ListView):

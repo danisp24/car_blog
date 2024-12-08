@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -11,7 +10,8 @@ class Car(models.Model):
     category = models.ForeignKey('CarCategory', on_delete=models.CASCADE, related_name='cars')
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1000)])
     description = models.TextField()
-    # image = models.CloudinaryField(upload_to='car_images/', blank=True, null=True) #TODO
+    image_url = models.URLField(null=True, blank=True,
+                                default='https://t3.ftcdn.net/jpg/07/31/17/02/360_F_731170296_Xamy0xpnprlowd7SPEIMHZqTWxJGRqHv.jpg')
     available_for_test_drive = models.BooleanField(default=True)
 
     def __str__(self):

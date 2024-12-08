@@ -1,0 +1,48 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1>About Our Car Blog</h1>
+                <p class="text-muted">Your ultimate destination for car enthusiasts!</p>
+
+                <section class="my-4">
+                    <h2>Our Mission</h2>
+                    <p>We aim to create a community-driven platform where car lovers can share their experiences,
+                        insights, and
+                        opinions. Whether it’s the latest reviews, maintenance tips, or fascinating car stories, we’re
+                        here to
+                        cover it all.</p>
+                </section>
+
+                <section class="my-4">
+                    <h2>What You'll Find Here</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Car Reviews:</strong> Honest and detailed reviews of the
+                            latest
+                            models.
+                        </li>
+                        <li class="list-group-item"><strong>Test Drives:</strong> Book a test drive for any of our cars,
+                            and our dedicated car managers will review your request.
+                        </li>
+                        <li class="list-group-item"><strong>Feature Stories:</strong> Engaging articles about car
+                            culture,
+                            history, and innovation.
+                        </li>
+                        <li class="list-group-item"><strong>Community Posts:</strong> A space to share your own car
+                            stories and
+                            photos.
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{% static 'images/cars-in-lot.jpg' %}" alt="Cars in a lot"
+                     class="img-fluid rounded shadow">
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

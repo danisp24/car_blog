@@ -4,14 +4,14 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.timezone import now, is_naive, make_aware
 
-from .models import Car, TestDriveBooking
+from .models import Car, TestDriveBooking, CarCategory
 
 
 class CarBaseForm(forms.ModelForm):
     class Meta:
         model = Car
-        fields = ['brand', 'category', 'price', 'description',
-                  'available_for_test_drive']
+        fields = ['brand', 'category', 'price', 'description', 'image_url'
+                  ]
 
 
 class CarCreateForm(CarBaseForm):
@@ -19,10 +19,17 @@ class CarCreateForm(CarBaseForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            if isinstance(field.widget, forms.CheckboxInput):
-                field.widget.attrs['class'] = 'form-check-input'
-            else:
-                field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'form-control'
+
+
+class CarCategoryForm(forms.ModelForm):
+    class Meta:
+        model = CarCategory
+        fields = ['name', 'description']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter category name'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter category description'}),
+        }
 
 
 class TestDriveBookingForm(forms.ModelForm):

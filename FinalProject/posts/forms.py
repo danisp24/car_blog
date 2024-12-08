@@ -1,5 +1,6 @@
 from django import forms
 
+from FinalProject.cars.models import CarCategory
 from FinalProject.posts.mixins import DisabledFieldsMixin
 from FinalProject.posts.models import CarPost
 
@@ -7,7 +8,7 @@ from FinalProject.posts.models import CarPost
 class PostBaseForm(forms.ModelForm):
     class Meta:
         model = CarPost
-        fields = ['title', 'content']  # Only include fields to be shown to the user
+        fields = ['title', 'content']
         labels = {
             'title': 'Title:',
             'content': 'Content:',
@@ -24,22 +25,23 @@ class PostBaseForm(forms.ModelForm):
             },
         }
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     # Exclude fields from user input, but still set programmatically
-    #     self.fields['is_published'].widget = forms.HiddenInput()
-    #     self.fields['author'].widget = forms.HiddenInput()
-
 
 class PostCreateForm(PostBaseForm):
     pass
 
 
-# class PostEditForm(PostBaseForm):
-#     class Meta(PostBaseForm.Meta):
-#         help_texts = {
-#             'image_url': ''
-#         }
+class PostEditForm(PostBaseForm):
+    class Meta:
+        model = CarPost
+        fields = ['title', 'content', ]
+        widgets = {
+            'content': forms.Textarea(
+                attrs={'class': 'form-control', 'rows': 5, }),
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'readonly': 'readonly',
+            })
+        }
 
 
 class PostDeleteForm(DisabledFieldsMixin, PostBaseForm):
@@ -51,4 +53,13 @@ class SearchForm(forms.Form):
         label='',
         required=False,
         max_length=100,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Search by title or content...'
+        })
+    )
+    category = forms.ChoiceField(
+        required=False,
+        choices=[('', 'All Categories')] + [(cat.id, cat.name) for cat in CarCategory.objects.all()],
+        widget=forms.Select(attrs={'class': 'form-select'})
     )
