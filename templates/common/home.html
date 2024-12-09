@@ -3,38 +3,81 @@
 
 {% block content %}
     <div class="container my-5">
-        <div class="row">
 
+        <div class="row align-items-center text-center text-md-start mb-5">
             <div class="col-md-6">
-                <h1>Welcome to Car Blog</h1>
-                <p class="text-muted">Where Passion for Cars Drives Everything</p>
-
-                <div class="my-4">
-                    <p class="lead">At <strong>Car Blog</strong>, we celebrate the artistry, innovation, and excitement of the
-                        automotive
-                        world. Whether you're here to explore the latest trends, dive into fascinating car stories, or
-                        share
-                        your passion for vehicles, you’re in the right place.</p>
-                    <p class="lead">Our community is designed for car lovers of all kinds—from seasoned enthusiasts to curious
-                        newcomers. We
-                        believe every car has a story, and we’re here to help you discover and share yours.</p>
-                </div>
-
-                <div class="my-4">
-                    <p class="lead">Want to see posts and connect with other car enthusiasts?</p>
-                    <p class="lead"><a href="{% url 'login' %}">Sign in</a>
-                        to your
-                        account or <a href="{% url 'register' %}">register</a> to join our growing community.</p>
+                <h1 class="display-4 fw-bold">Welcome to <span class="text-primary">Car Blog</span></h1>
+                <p class="text-muted fs-5">Where Passion for Cars Drives Everything</p>
+                <p class="lead mt-3">
+                    At <strong>Car Blog</strong>, we celebrate the artistry, innovation, and excitement of the
+                    automotive world.
+                    Whether you're here to explore the latest trends, dive into fascinating car stories, or share your
+                    passion
+                    for vehicles, you’re in the right place.
+                </p>
+                <p class="lead">
+                    Join a community of car enthusiasts—from seasoned veterans to curious newcomers—and share your love
+                    for
+                    all things automotive.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-lg me-2">Sign In</a>
+                    <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg">Register</a>
                 </div>
             </div>
-
-
             <div class="col-md-6 text-center">
-                <img src="{% static 'images/depositphotos_31887593-stock-photo-auto-blog.jpg' %}" alt="Auto Blog"
-                     class="img-fluid rounded shadow mb-4" style="max-width: 60%; height: auto;">
-                <img src="{% static 'images/istockphoto-1493574434-612x612.jpg' %}" alt="Car Enthusiasts"
-                     class="img-fluid rounded shadow mb-4" style="max-width: 60%; height: auto;">
+                <img src="{% static 'images/depositphotos_31887593-stock-photo-auto-blog.jpg' %}"
+                     alt="Auto Blog" class="img-fluid rounded shadow-lg mb-3" style="max-width: 75%; height: auto;">
+                <img src="{% static 'images/istockphoto-1493574434-612x612.jpg' %}"
+                     alt="Car Enthusiasts" class="img-fluid rounded shadow-lg" style="max-width: 75%; height: auto;">
+            </div>
+        </div>
+
+        <div class="row text-center my-5">
+            <div class="col">
+                <h2 class="fw-bold">Discover, Connect, and Share</h2>
+                <p class="text-muted fs-5">Explore the latest trends, read captivating stories, and connect with fellow
+                    car lovers.</p>
+            </div>
+        </div>
+        <div class="row gy-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm text-center">
+                    <div class="card-body">
+                        <div class="display-1 text-primary mb-3">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Latest Trends</h5>
+                        <p class="card-text">Stay updated with cutting-edge automotive innovations and styles.</p>
+                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm text-center">
+                    <div class="card-body">
+                        <div class="display-1 text-success mb-3">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Fascinating Stories</h5>
+                        <p class="card-text">Dive into stories that showcase the passion and beauty of cars.</p>
+                        <a href="#" class="btn btn-outline-primary">Read Stories</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm text-center">
+                    <div class="card-body">
+                        <div class="display-1 text-warning mb-3">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Join the Community</h5>
+                        <p class="card-text">Connect with like-minded enthusiasts and share your experiences.</p>
+                        <a href="{% url 'register' %}" class="btn btn-outline-primary">Get Involved</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 {% endblock %}
+

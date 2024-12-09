@@ -4,11 +4,8 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
 from FinalProject.accounts.forms import CustomAuthenticationForm, CustomUserCreationForm
 
-
-# Create your views here.
 
 class UserLoginView(LoginView):
     template_name = 'registration/login.html'

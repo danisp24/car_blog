@@ -8,16 +8,20 @@ from FinalProject.posts.models import CarPost
 class PostBaseForm(forms.ModelForm):
     class Meta:
         model = CarPost
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'related_cars']
         labels = {
             'title': 'Title:',
             'content': 'Content:',
+            'related_cars': 'Related Cars:'
         }
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Post title'}),
             'content': forms.Textarea(
                 attrs={'class': 'form-control', 'rows': 5,
                        'placeholder': 'Write the content about this car post here'}),
+            'related_cars': forms.SelectMultiple(attrs={
+                'class': 'form-control',
+            }),
         }
         error_messages = {
             'title': {
@@ -33,14 +37,17 @@ class PostCreateForm(PostBaseForm):
 class PostEditForm(PostBaseForm):
     class Meta:
         model = CarPost
-        fields = ['title', 'content', ]
+        fields = ['title', 'content', 'related_cars']
         widgets = {
             'content': forms.Textarea(
                 attrs={'class': 'form-control', 'rows': 5, }),
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
                 'readonly': 'readonly',
-            })
+            }),
+            'related_cars': forms.SelectMultiple(attrs={
+                'class': 'form-control',
+            }),
         }
 
 

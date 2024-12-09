@@ -3,10 +3,18 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-UserModel = get_user_model()
+AppUser = get_user_model()
 
 
 class CustomAuthenticationForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Username', })
+        self.fields['password'].widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Password', })
+
     error_messages = {
         "invalid_login": _(
             "The username and password combination is incorrect. Please try again."
@@ -17,7 +25,7 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
-        model = UserModel
+        model = AppUser
         fields = [
             "username",
             "email",

@@ -71,3 +71,17 @@ class TestDriveBookingForm(forms.ModelForm):
             raise ValidationError(f"The car {car.brand} already has a confirmed booking.")
 
         return cleaned_data
+
+
+class TestDriveBookingEditForm(TestDriveBookingForm):
+    class Meta(TestDriveBookingForm.Meta):
+        fields = ['car', 'date', 'time', ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.instance.pk:
+            car_instance = self.instance.car
+
+            self.fields['car'].widget = forms.HiddenInput()
+            self.fields['car'].initial = car_instance.pk

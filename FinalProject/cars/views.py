@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
-from django.core.exceptions import ValidationError
-from django.http import JsonResponse, Http404
+from django.core.exceptions import PermissionDenied
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-from .forms import CarCreateForm, TestDriveBookingForm, CarCategoryForm
+from .forms import CarCreateForm, TestDriveBookingForm, CarCategoryForm, TestDriveBookingEditForm
 from .models import Car, CarCategory, TestDriveBooking
 
 
@@ -26,19 +26,6 @@ class CarDetailView(DetailView):
     model = Car
     template_name = 'cars/car_detail.html'
     context_object_name = 'car'
-
-    def post(self, request, *args, **kwargs):
-        car = self.get_object()
-        if request.user.is_authenticated:
-            TestDriveBooking.objects.create(
-                user=request.user,
-                car=car,
-                date=request.POST['date'],
-                time=request.POST['time'],
-            )
-            return redirect('car_details', pk=car.pk)
-        else:
-            return redirect('login')
 
 
 class CarCreateView(PermissionRequiredMixin, CreateView):
@@ -97,6 +84,29 @@ class ManageBookingsView(PermissionRequiredMixin, ListView):
 
     def get_queryset(self):
         return TestDriveBooking.objects.all().order_by('-created_at')
+
+
+class EditBookingsView(LoginRequiredMixin, UpdateView):
+    model = TestDriveBooking
+    form_class = TestDriveBookingEditForm
+    template_name = 'cars/edit_booking.html'
+    context_object_name = 'booking'
+
+    def get_success_url(self):
+        return reverse_lazy('my_bookings')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+
+        if obj.user != self.request.user:
+            raise PermissionDenied("You don't have permission to edit this booking.")
+
+        return obj
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+        return redirect(self.get_success_url())
 
 
 class UpdateBookingStatusView(PermissionRequiredMixin, UpdateView):

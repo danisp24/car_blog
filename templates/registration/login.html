@@ -1,11 +1,29 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg" style="max-width: 400px; width: 100%;">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Login</h3>
+                <form method="post">
+                    {% csrf_token %}
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary ml-2">Login</button>
-        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-    </form>
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label">Username</label>
+                        {{ form.username }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_password" class="form-label">Password</label>
+                        {{ form.password }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+
+                    <p class="text-center mt-3">Don't have an account? <a href="{% url 'register' %}"
+                                                                          class="text-primary">Register</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
