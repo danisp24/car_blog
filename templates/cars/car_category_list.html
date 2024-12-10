@@ -1,0 +1,35 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Car Categories{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Car Categories</h1>
+
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-light rounded-lg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">{{ category.name }}</h4>
+                            <p class="card-text">{{ category.description|default:"No description available." }}</p>
+
+                            <a href="{% url 'category_detail' category.pk %}"
+                               class="btn btn-outline-primary btn-block mt-3">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-center">No categories available.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% include 'common/pagination.html' %}
+    </div>
+    <link rel="stylesheet" href="{% static 'css/car_categories.css' %}">
+{% endblock %}

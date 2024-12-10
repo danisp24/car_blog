@@ -1,5 +1,4 @@
 {% extends 'common/base.html' %}
-
 {% block title %}My Bookings History{% endblock %}
 
 {% block content %}
@@ -36,8 +35,12 @@
                         <td>
                             {% if booking.status == 'Pending' %}
                                 <a href="{% url 'edit_booking' booking.pk %}" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Cancel</a>
                             {% endif %}
+                            <form method="POST" action="{% url 'delete_booking' booking.pk %}"
+                                  class="d-inline-block">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                            </form>
                         </td>
                     </tr>
                 {% endfor %}

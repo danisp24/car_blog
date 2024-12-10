@@ -54,6 +54,9 @@ class PostEditForm(PostBaseForm):
 class PostDeleteForm(DisabledFieldsMixin, PostBaseForm):
     disabled_fields = ('__all__',)
 
+    class Meta(PostBaseForm.Meta):
+        exclude = ('related_cars',)
+
 
 class SearchForm(forms.Form):
     query = forms.CharField(

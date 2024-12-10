@@ -5,7 +5,11 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>{{ car.brand }}</h1>
-                <p><strong>Category:</strong> {{ car.category.name }}</p>
+                <p><strong>Category:</strong>
+                    <a href="{% url 'category_detail' car.category.pk %}" class="btn btn-info btn-sm">
+                        {{ car.category.name }}
+                    </a>
+                </p>
                 <p><strong>Price:</strong> ${{ car.price }}</p>
                 <p><strong>Description:</strong> {{ car.description }}</p>
                 <p><strong>Available for Test Drive at the moment:</strong>

@@ -1,9 +1,9 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .forms import CarCreateForm, TestDriveBookingForm, CarCategoryForm, TestDriveBookingEditForm
 from .models import Car, CarCategory, TestDriveBooking
@@ -51,6 +51,19 @@ class CarCategoryCreateView(PermissionRequiredMixin, CreateView):
 
     def handle_no_permission(self):
         raise Http404
+
+
+class CarCategoryDetailView(DetailView):
+    model = CarCategory
+    template_name = 'cars/category_detail.html'
+
+
+class CarCategoryListView(ListView):
+    model = CarCategory
+    template_name = 'cars/car_category_list.html'
+    context_object_name = 'categories'
+    paginate_by = 8
+    ordering = ['-name']
 
 
 class MyBookingsView(LoginRequiredMixin, ListView):
@@ -107,6 +120,17 @@ class EditBookingsView(LoginRequiredMixin, UpdateView):
         form.instance.user = self.request.user
         form.save()
         return redirect(self.get_success_url())
+
+
+class DeleteTestDriveBookingView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = TestDriveBooking
+
+    def get_success_url(self):
+        return reverse_lazy('my_bookings')
+
+    def test_func(self):
+        booking = self.get_object()
+        return booking.user == self.request.user
 
 
 class UpdateBookingStatusView(PermissionRequiredMixin, UpdateView):

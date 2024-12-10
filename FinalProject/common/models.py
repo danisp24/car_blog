@@ -3,7 +3,7 @@ from django.db import models
 
 from FinalProject.posts.models import CarPost
 
-UserModel = get_user_model()
+AppUser = get_user_model()
 
 
 class Comment(models.Model):
@@ -13,7 +13,7 @@ class Comment(models.Model):
         related_name='comments'
     )
     author = models.ForeignKey(
-        get_user_model(),
+        AppUser,
         on_delete=models.CASCADE
     )
 
