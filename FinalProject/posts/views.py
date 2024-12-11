@@ -97,7 +97,7 @@ class DetailPostView(LoginRequiredMixin, FormMixin, DetailView):
         page_obj = paginator.get_page(page_number)
 
         context['comments'] = page_obj
-        if self.request.user.is_authenticated and post.is_published:
+        if self.request.user.is_authenticated:
             context['comment_form'] = self.get_form()
 
         context['page_obj'] = page_obj

@@ -29,7 +29,18 @@
             {% endfor %}
         </div>
 
-        {% include 'common/pagination.html' %}
+        {% if is_limited_view %}
+            <div class="alert alert-warning mt-4 text-center">
+                <p class="mb-3">
+                    To see all categories, please <a href="{% url 'login' %}" class="alert-link">log in</a>.
+                </p>
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Log In</a>
+            </div>
+        {% endif %}
+
+        {% if not is_limited_view %}
+            {% include 'common/pagination.html' %}
+        {% endif %}
     </div>
     <link rel="stylesheet" href="{% static 'css/car_categories.css' %}">
 {% endblock %}

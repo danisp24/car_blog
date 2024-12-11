@@ -65,6 +65,18 @@ class CarCategoryListView(ListView):
     paginate_by = 8
     ordering = ['-name']
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_authenticated:
+            return queryset
+        return queryset[:5]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add a flag to indicate limited view for unauthenticated users
+        context['is_limited_view'] = not self.request.user.is_authenticated
+        return context
+
 
 class MyBookingsView(LoginRequiredMixin, ListView):
     model = TestDriveBooking

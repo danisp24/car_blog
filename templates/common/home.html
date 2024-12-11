@@ -49,7 +49,7 @@
                         </div>
                         <h5 class="card-title fw-bold">Latest Trends</h5>
                         <p class="card-text">Stay updated with cutting-edge automotive innovations and styles.</p>
-                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        <a href="{% url 'cars' %}" class="btn btn-outline-primary">Learn More About Our Cars</a>
                     </div>
                 </div>
             </div>
@@ -57,11 +57,12 @@
                 <div class="card border-0 shadow-sm text-center">
                     <div class="card-body">
                         <div class="display-1 text-success mb-3">
-                            <i class="bi bi-book"></i>
+                            <i class="bi bi-car-front"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Fascinating Stories</h5>
-                        <p class="card-text">Dive into stories that showcase the passion and beauty of cars.</p>
-                        <a href="#" class="btn btn-outline-primary">Read Stories</a>
+                        <h5 class="card-title fw-bold">Car Categories</h5>
+                        <p class="card-text">Explore a wide variety of car categories that suit your lifestyle and
+                            preferences.</p>
+                        <a href="{% url 'category_list' %}" class="btn btn-outline-primary">Browse Categories</a>
                     </div>
                 </div>
             </div>
