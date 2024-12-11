@@ -1,0 +1,12 @@
+.navbar-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.navbar-nav .dropdown-menu {
+    pointer-events: auto;
+}
+
+.navbar-nav .dropdown:hover > .nav-link {
+    text-decoration: none;
+}

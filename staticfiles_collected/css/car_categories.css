@@ -1,0 +1,43 @@
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #343a40;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
