@@ -4,8 +4,8 @@
 ### Recommended resolution on computer: 1920x1080
 
 
-## ✨ Features
-### 🔐 Authentication
+## Features
+### Authentication
 - **Register**: Users can register, providing First Name, Last Name, Email, Password and Confirm Password - error messages are displayed if the values are not in the correct format.
 - **Login**: Users can log in to their account after it has been created.
 - **Logout**: Users can log out of their accounts after they have been logged in.
@@ -30,6 +30,88 @@ Normal authenticated user:
 User with Post Manager Group:
 - Can publish and unpublish posts
 ![image](https://github.com/user-attachments/assets/80782da0-a5c5-4f2d-9861-24240d367579)
+
+Homepage without user:
+![image](https://github.com/user-attachments/assets/759b5fe6-8033-4dcd-ab10-8b17745088f3)
+
+### Authenticated user Create Post:
+- Users can create posts about the cars that are in "Our Cars" - with One or Many relations
+- Users can create posts without any relations aswell
+- The posts have to be Approved by Post moderators - Publish/Unpublish -> is_published = True/False
+![image](https://github.com/user-attachments/assets/01b9e62b-33c9-4f67-9cc0-569b1e27fc01)
+
+### Our Cars
+- This is accessible by authenticated and unauthenticated users:
+- ![image](https://github.com/user-attachments/assets/385eb92c-ac62-43f7-b40d-36ffe5ed0a5d)
+
+### Our Categories
+- This is accessible by authenticated and unauthenticated users:
+- Unauthenticated users can only see the first page of categories:
+![image](https://github.com/user-attachments/assets/972d4a34-5601-4905-98cc-459e0bd00c04)
+
+- Authenticated users can see all the pages:
+- ![image](https://github.com/user-attachments/assets/b5dafe71-c833-4ff2-830c-a4e460d850bc)
+
+
+- Can be Added by Create Category by users with "Car and CarCategory Manager" group and edited and deleted in the admin panel
+- ![image](https://github.com/user-attachments/assets/99cd6852-b785-4dbd-b32d-71ec52c4d32e)
+
+  
+
+### Car Bookings
+-Only for authenticated users:
+- My bookings history:
+- Can cancel(Delete) confirmed and cancelled bookings
+- Pending bookings can be edited aswell
+- Validation that the bookings are in the future
+- Signals to change booking status
+![image](https://github.com/user-attachments/assets/bb532ef0-66af-4493-86f4-451c645e45a7)
+
+- Manage bookings:
+- Only for staff users in group "TestDriveBooking Manager":
+- Can approve/cancel bookings
+- Also managable in the admin panel
+![image](https://github.com/user-attachments/assets/46044107-3f42-4990-add0-a53ff90e2f08)
+
+
+- Authenticated users can create bookings here:
+- They have to wait for the booking staff to Confirm/Cancel their request
+- They can only book cars that are available for test drive
+- If 2 or more bookings are created at the same time with status "Pending", staff users can approve 1 of them and others are switched to "Cancelled"
+![image](https://github.com/user-attachments/assets/a5641bff-b7eb-496e-9ff8-ae8dc3703cd0)
+
+
+### Add Car
+- Users with group "Car and CarCategory Manager can add cars from here:
+![image](https://github.com/user-attachments/assets/e9e433db-8049-4ed7-95cd-e79f82d6025f)
+- They can also manage it in the admin panel
+
+
+### My Account
+- This is accessible only to authenticated users:
+![image](https://github.com/user-attachments/assets/7190cf0f-1f29-4805-8e3f-953c888f51fc)
+
+- Edit Account so users can Edit their First Name, Last Name and Gender, becuase they are optional in the Registration form:
+![image](https://github.com/user-attachments/assets/9ca0fb9e-a023-45e0-90a5-bf6b55fd04e8)
+
+### My Blog
+- Button for posts that are created by the user
+- They can be edited and deleted from there
+![image](https://github.com/user-attachments/assets/966e8374-b62f-43f1-a266-1df171f2f8cb)
+
+### Post Detail Page
+- Post detail page shows the comments about the post
+- Users can edit and delete their own comments
+- The related cars are displayed there and can be clicked to view their Details
+![image](https://github.com/user-attachments/assets/146e9349-0fb4-4709-80e8-3add60d97997)
+
+
+
+
+
+  
+
+
 
 
 
