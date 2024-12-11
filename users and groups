@@ -13,10 +13,17 @@ username: postmoderator
 password: 12admin34
 email: postmoderator@mail.com
 
-Admin(Car and CarCategory Manager):
+Admin(Car and CarCategory Manager also TestDriveBookingManager):
 username: carmoderator
 password: 12admin34
 email: carmoderator@mail.com
+
+Superadmin(not superuser):
+username: superadmin
+password: 12admin34
+email: superadmin@mail.com
+
+
 
 
 
