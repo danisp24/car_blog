@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 # django-insecure-u58m8lm6kirc^e@ck_wspie_)+@$@vl%vx3(-_ub3l-t**9wf!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', config('DEBUG')) == 'True'
+DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS')).split(',')
 
