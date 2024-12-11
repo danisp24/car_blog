@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.utils.translation import gettext_lazy as _
 
 AppUser = get_user_model()
@@ -43,4 +43,19 @@ class CustomUserCreationForm(UserCreationForm):
             "last_name": forms.TextInput(attrs={"class": "form-control", 'placeholder': 'Optional'}),
             "password1": forms.PasswordInput(attrs={"class": "form-control"}),
             "password2": forms.PasswordInput(attrs={"class": "form-control"}),
+        }
+
+
+class CustomUserEditForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = AppUser
+        fields = [
+            "first_name",
+            "last_name",
+            "gender",
+        ]
+        widgets = {
+            "gender": forms.Select(attrs={"class": "form-control"}),
+            "first_name": forms.TextInput(attrs={"class": "form-control"}),
+            "last_name": forms.TextInput(attrs={"class": "form-control"}),
         }

@@ -68,4 +68,3 @@ class SearchForm(forms.Form):
             'placeholder': 'Search by title or content...'
         })
     )
-

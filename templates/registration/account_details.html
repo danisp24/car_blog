@@ -1,0 +1,30 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Account Details</h2>
+        <table class="table">
+            <tr>
+                <th>Username</th>
+                <td>{{ user_details.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user_details.email }}</td>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <td>{{ user_details.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{ user_details.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ user_details.gender }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'edit_account' %}" class="btn btn-primary">Edit Account</a>
+    </div>
+{% endblock %}

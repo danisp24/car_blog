@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from .forms import TestDriveBookingForm
 from .models import Car, CarCategory, TestDriveBooking
 
 

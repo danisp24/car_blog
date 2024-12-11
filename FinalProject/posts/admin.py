@@ -21,7 +21,6 @@ class CarPostAdmin(admin.ModelAdmin):
     filter_horizontal = ('related_cars',)
 
     def get_readonly_fields(self, request, obj=None):
-
         readonly_fields = super().get_readonly_fields(request, obj)
         if not request.user.has_perm('posts.can_publish'):
             readonly_fields += ('is_published',)

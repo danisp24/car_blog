@@ -38,6 +38,3 @@ def update_car_availability_on_delete(sender, instance, **kwargs):
     if not confirmed_bookings.exists():
         instance.car.available_for_test_drive = True
         instance.car.save()
-
-
-
