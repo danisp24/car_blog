@@ -68,8 +68,4 @@ class SearchForm(forms.Form):
             'placeholder': 'Search by title or content...'
         })
     )
-    category = forms.ChoiceField(
-        required=False,
-        choices=[('', 'All Categories')] + [(cat.id, cat.name) for cat in CarCategory.objects.all()],
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
+
