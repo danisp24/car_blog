@@ -128,6 +128,10 @@ Homepage without user:
 - The related cars are displayed there and can be clicked to view their Details
 ![image](https://github.com/user-attachments/assets/146e9349-0fb4-4709-80e8-3add60d97997)
 
+### Comments
+- Comments can be moderated by admins with the group "Post Manager" from the admin panel
+
+
 
 ### 403 Custom Permission Denied page
 ![image](https://github.com/user-attachments/assets/c98ed037-2cfd-4815-9f87-e708546c1da3)
