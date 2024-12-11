@@ -132,6 +132,10 @@ Homepage without user:
 ### 403 Custom Permission Denied page
 ![image](https://github.com/user-attachments/assets/c98ed037-2cfd-4815-9f87-e708546c1da3)
 
+### 404 Custom Page
+![image](https://github.com/user-attachments/assets/167d2000-6222-432f-995a-03953afda6bb)
+
+
 
 ### Users and Groups for Testing
 
@@ -150,7 +154,12 @@ Homepage without user:
 - **Password**: 12admin34
 - **Email**: postmoderator@mail.com
 
-#### Admin (Car and CarCategory Manager):
+#### Superadmin (not superuser):
+- **Username**: superadmin
+- **Password**: 12admin34
+- **Email**: superadmin@mail.com
+
+#### Admin (Car and CarCategory Manager also TestDriveBookingManager):
 - **Username**: carmoderator
 - **Password**: 12admin34
 - **Email**: carmoderator@mail.com
@@ -168,9 +177,6 @@ Homepage without user:
 - **TestDriveBooking Manager**:
   - CRUD operations on test drive bookings.
   - Can approve or cancel bookings.
-
-
-
 
 
   
