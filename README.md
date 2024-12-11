@@ -3,10 +3,30 @@
 ### Deployed version: https://https://carblog-fhczg0adajejghh3.italynorth-01.azurewebsites.net/
 ### Recommended resolution on computer: 1920x1080
 
+### Prerequisites
+- Python and Django installed.
+
+
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/danisp24/car_blog.git
+   ```
+
+2. Install requirements.txt:
+   ```sh
+   pip install requirements.txt
+   ```
+
+3. Users and groups:
+   ## Here are the created users and Groups for testing purposes
+ ```sh
+   https://github.com/danisp24/car_blog/blob/main/users%20and%20groups
+   ```
 
 ## Features
 ### Authentication
-- **Register**: Users can register, providing First Name, Last Name, Email, Password and Confirm Password - error messages are displayed if the values are not in the correct format.
+- **Register**: Users can register, providing Username, First Name, Last Name, Gender, Email, Password and Confirm Password - error messages are displayed if the values are not in the correct format. - First Name, Last Name and Gender are optional.
 - **Login**: Users can log in to their account after it has been created.
 - **Logout**: Users can log out of their accounts after they have been logged in.
 
@@ -80,6 +100,9 @@ Homepage without user:
 - If 2 or more bookings are created at the same time with status "Pending", staff users can approve 1 of them and others are switched to "Cancelled"
 ![image](https://github.com/user-attachments/assets/a5641bff-b7eb-496e-9ff8-ae8dc3703cd0)
 
+- If car manager tries to book 2 bookings of the same car a custom Http400 error page shows:
+![image](https://github.com/user-attachments/assets/ed9c02eb-0a5a-4d05-9249-43fd138136c5)
+
 
 ### Add Car
 - Users with group "Car and CarCategory Manager can add cars from here:
@@ -104,6 +127,47 @@ Homepage without user:
 - Users can edit and delete their own comments
 - The related cars are displayed there and can be clicked to view their Details
 ![image](https://github.com/user-attachments/assets/146e9349-0fb4-4709-80e8-3add60d97997)
+
+
+### 403 Custom Permission Denied page
+![image](https://github.com/user-attachments/assets/c98ed037-2cfd-4815-9f87-e708546c1da3)
+
+
+### Users and Groups for Testing
+
+#### Superuser:
+- **Username**: dani
+- **Password**: admin
+- **Email**: dani@dani.bg
+
+#### Normal User:
+- **Username**: user
+- **Password**: 12user34
+- **Email**: user@user.com
+
+#### Admin (Post Manager):
+- **Username**: postmoderator
+- **Password**: 12admin34
+- **Email**: postmoderator@mail.com
+
+#### Admin (Car and CarCategory Manager):
+- **Username**: carmoderator
+- **Password**: 12admin34
+- **Email**: carmoderator@mail.com
+
+### Groups and Permissions
+
+- **Superadmin**: All permissions, but `is_superuser = False`.
+- **Car and CarCategory Manager**: 
+  - CRUD operations on cars.
+  - CRUD operations on car categories.
+- **Posts Manager**:
+  - CRUD operations on posts.
+  - CRUD operations on comments.
+  - Ability to publish or unpublish posts.
+- **TestDriveBooking Manager**:
+  - CRUD operations on test drive bookings.
+  - Can approve or cancel bookings.
 
 
 
