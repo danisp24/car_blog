@@ -1,0 +1,28 @@
+Superuser: 
+username: dani
+password:admin
+email: dani@dani.bg
+
+Normal user:
+username: user
+password: 12user34
+email: user@user.com
+
+Admin(Post Manager):
+username: postmoderator
+password: 12admin34
+email: postmoderator@mail.com
+
+Admin(Car and CarCategory Manager):
+username: carmoderator
+password: 12admin34
+email: carmoderator@mail.com
+
+
+
+groups:
+Superadmin - all permissions but is_superuser = False
+Car and CarCategory manager - CRUD on car, CRUD on car category
+Posts Manager - CRUD on posts, CRUD on comments, also can publish or unpublish post
+TestDriveBooking Manager - CRUD on test drive bookings - can approve/cancel bookings
+
