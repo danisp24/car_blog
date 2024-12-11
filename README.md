@@ -52,7 +52,14 @@ User with Post Manager Group:
 ![image](https://github.com/user-attachments/assets/80782da0-a5c5-4f2d-9861-24240d367579)
 
 Homepage without user:
-![image](https://github.com/user-attachments/assets/759b5fe6-8033-4dcd-ab10-8b17745088f3)
+![image](https://github.com/user-attachments/assets/4669ba62-04e7-4db4-9b7d-ac3ba15b8a67)
+![image](https://github.com/user-attachments/assets/ef3e4079-1030-47ff-8ec0-ce9f40b6edef)
+
+- Learn more about our cars Button leads to Our Cars
+- Browse Categories Button leads to Car Categories
+- Get Involved Button leads to Registration page
+
+
 
 ### Authenticated user Create Post:
 - Users can create posts about the cars that are in "Our Cars" - with One or Many relations
