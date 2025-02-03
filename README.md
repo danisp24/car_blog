@@ -1,6 +1,6 @@
 # CarBlog
 
-### Deployed version: https://https://carblog-fhczg0adajejghh3.italynorth-01.azurewebsites.net/
+### Deployed version: https://carblog-fhczg0adajejghh3.italynorth-01.azurewebsites.net/
 ### Recommended resolution on computer: 1920x1080
 
 ### Prerequisites
